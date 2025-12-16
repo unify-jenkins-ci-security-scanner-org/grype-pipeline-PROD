@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                 echo "Scanning folder '${GRYPE_SCAN_TARGET}' with Grype..."
-                ${GRYPE_BINARY_DIR}/grype ${GRYPE_SCAN_TARGET} -o sarif --quiet > ${GRYPE_REPORT}
+                ${GRYPE_BINARY_DIR}/grype ${GRYPE_SCAN_TARGET} -o sarif 2>&1 | grep -v 'purl scheme is not "pkg"' > ${GRYPE_REPORT}
                 '''
             }
         }
