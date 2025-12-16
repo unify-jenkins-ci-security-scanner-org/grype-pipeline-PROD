@@ -5,7 +5,7 @@ pipeline {
         GRYPE_BINARY_DIR = "${env.WORKSPACE}/bin"
         GRYPE_SCAN_TARGET = "${env.WORKSPACE}/test-workflow-ninja"
         GRYPE_REPORT = "grype-report.sarif"
-        GRYPE_VERSION = "v0.104.1"
+        GRYPE_VERSION = "v0.103.0"
     }
 
     stages {
