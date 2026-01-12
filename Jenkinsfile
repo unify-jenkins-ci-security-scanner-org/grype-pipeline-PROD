@@ -7,6 +7,10 @@ pipeline {
         GRYPE_REPORT = "grype-report.sarif"
     }
 
+    triggers {
+        cron '30 20 * * 1,4' // Runs at 20:30 on Monday and Thursday
+         }
+
     stages {
         stage('Install Grype') {
             steps {
