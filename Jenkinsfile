@@ -8,7 +8,7 @@ pipeline {
     }
 
     triggers {
-        cron '30 20 * * 1,4' // Runs at 20:30 on Monday and Thursday
+        cron '15 04 * * 1-5' // Runs at 43:15 on every day-of-week from Monday through Friday
          }
 
     stages {
@@ -50,11 +50,26 @@ pipeline {
                 '''
             }
         }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: "${GRYPE_REPORT}", fingerprint: true
+        stage('Security Scan') {
+            steps {
+                registerSecurityScan(
+                    // Security Scan to include
+                    artifacts: "${GRYPE_REPORT}",
+                    format: "sarif",
+                    archive: true
+                )
+            }
         }
     }
+
+    // post {
+    //     always {
+    //                 registerSecurityScan(
+    //                     artifacts: '${GRYPE_REPORT}',
+    //                     format: 'sarif',
+    //                     archive: true
+    //                 )
+    //          // archiveArtifacts artifacts: "${GRYPE_REPORT}", fingerprint: true
+    //     }
+    // }
 }
