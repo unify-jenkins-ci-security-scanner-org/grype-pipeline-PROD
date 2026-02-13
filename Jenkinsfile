@@ -7,9 +7,9 @@ pipeline {
         GRYPE_REPORT = "grype-report.sarif"
     }
 
-    triggers {
-        cron '15 20 * * 1,4' // Runs at 20:15 on every day-of-week from Monday through Friday
-         }
+    // triggers {
+    //     cron '15 20 * * 1,4' // Runs at 20:15 on every day-of-week from Monday through Friday
+    //      }
 
     stages {
         stage('Install Grype') {
